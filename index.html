@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xinyan Liu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0f17;
+      --surface: #141923;
+      --surface-2: #1c2433;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8edf5;
+      --muted: #7a8a9e;
+      --accent: #4f8ef7;
+      --accent-glow: rgba(79,142,247,0.15);
+      --green: #3ecf8e;
+      --amber: #f5a623;
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,15,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 15px;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* HERO */
+    #hero {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .hero-tagline {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover { opacity: 0.88; text-decoration: none; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.25); text-decoration: none; }
+
+    /* SECTION HEADING */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-meta { display: flex; flex-direction: column; gap: 12px; }
+    .meta-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .meta-label { font-size: 11px; color: var(--muted); font-family: var(--mono); letter-spacing: 0.08em; margin-bottom: 2px; }
+    .meta-value { font-size: 14px; font-weight: 500; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .skill-category {
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 12px;
+      background: var(--surface-2);
+      color: var(--muted);
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+    }
+
+    /* PROJECTS */
+    .projects-grid { display: flex; flex-direction: column; gap: 1rem; }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: rgba(79,142,247,0.35); }
+    .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+    .project-name { font-size: 1.05rem; font-weight: 600; }
+    .project-links { display: flex; gap: 10px; flex-shrink: 0; }
+    .project-link {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .project-link:hover { color: var(--text); border-color: rgba(255,255,255,0.2); text-decoration: none; }
+    .project-desc { font-size: 14px; color: var(--muted); margin-bottom: 1rem; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tech-badge {
+      font-size: 11px;
+      font-family: var(--mono);
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(79,142,247,0.2);
+    }
+
+    /* CONTACT */
+    .contact-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .contact-inner p { color: var(--muted); margin-bottom: 2rem; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { color: var(--text); border-color: rgba(255,255,255,0.2); text-decoration: none; }
+    .contact-link svg { width: 16px; height: 16px; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 4rem 1.25rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-name { font-size: 2.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">xinyanliu.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">// hello, world</p>
+  <h1 class="hero-name">Xinyan Liu</h1>
+  <p class="hero-tagline">
+    Computer Science student at University of Melbourne · building things I find interesting and learning as I go.
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View my projects</a>
+    <a href="#contact" class="btn btn-outline">Get in touch</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">01 // about</p>
+  <h2>A bit about me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a third-year Computer Science student passionate about building software that solves real problems.
+        I enjoy full-stack development and have a growing interest in systems programming and machine learning.
+      </p>
+      <p>
+        Outside of code, I like playing tennis and reading fictions.
+        I'm always open to new opportunities, collaborations, and interesting conversations.
+      </p>
+    </div>
+    <div class="about-meta">
+      <div class="meta-item">
+        <div class="meta-label">STUDYING</div>
+        <div class="meta-value">B.Sc. Computer Science</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">UNIVERSITY</div>
+        <div class="meta-value">University of Melbourne</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">YEAR</div>
+        <div class="meta-value">3rd Year (2024–2026)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">LOCATION</div>
+        <div class="meta-value">Melbourne, Australia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">02 // skills</p>
+  <h2>What I work with</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-category">LANGUAGES</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">C</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">WEB</div>
+      <div class="skill-tags">
+        <span class="tag">React</span>
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">REST APIs</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">TOOLS</div>
+      <div class="skill-tags">
+        <span class="tag">Git</span>
+        <span class="tag">Linux</span>
+        <span class="tag">VS Code</span>
+        <span class="tag">Docker</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">CONCEPTS</div>
+      <div class="skill-tags">
+        <span class="tag">Data Structures</span>
+        <span class="tag">Algorithms</span>
+        <span class="tag">OOP</span>
+        <span class="tag">Databases</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">03 // projects</p>
+  <h2>Things I've built</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-name">Study Planner App</span>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/study-planner" class="project-link" target="_blank">GitHub ↗</a>
+          <a href="#" class="project-link">Live ↗</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        A web app that helps students organise their study schedule using the spaced repetition technique.
+        Features include a subject calendar, daily review reminders, and progress tracking.
+      </p>
+      <div class="project-tech">
+        <span class="tech-badge">React</span>
+        <span class="tech-badge">Node.js</span>
+        <span class="tech-badge">SQLite</span>
+        <span class="tech-badge">REST API</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-name">CLI Task Manager</span>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/cli-tasks" class="project-link" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        A command-line productivity tool written in Python. Supports task creation, tagging, due dates,
+        and priority queuing, with a clean terminal UI. Data persists via a local JSON store.
+      </p>
+      <div class="project-tech">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Click</span>
+        <span class="tech-badge">Rich</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-name">Pathfinding Visualiser</span>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/pathfinder" class="project-link" target="_blank">GitHub ↗</a>
+          <a href="#" class="project-link">Live ↗</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        An interactive browser tool that visualises BFS, DFS, and Dijkstra's algorithm on a grid.
+        Built as a learning aid while studying graph algorithms. Draw walls, set start/end, and watch it solve.
+      </p>
+      <div class="project-tech">
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">HTML Canvas</span>
+        <span class="tech-badge">CSS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">04 // contact</p>
+  <h2>Let's talk</h2>
+  <div class="contact-inner">
+    <p>
+      Whether you have a project idea, an internship opportunity, or just want to say hi —
+      my inbox is open. I try to reply within a day or two.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:your.email@example.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email me
+      </a>
+      <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3C5.4.3 0 5.7 0 12.3c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 22.1 24 17.6 24 12.3 24 5.7 18.6.3 12 .3z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 2H3.6A1.6 1.6 0 0 0 2 3.6v16.8A1.6 1.6 0 0 0 3.6 22h16.8a1.6 1.6 0 0 0 1.6-1.6V3.6A1.6 1.6 0 0 0 20.4 2zM8 19H5V9h3v10zM6.5 7.7A1.8 1.8 0 1 1 8.3 5.9a1.8 1.8 0 0 1-1.8 1.8zM19 19h-3v-5.6c0-3.4-4-3.1-4 0V19h-3V9h3v1.8C13.4 8 19 7.8 19 13.2V19z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>built by Xinyan Liu · 2026</p>
+</footer>
+
+</body>
+</html>
