@@ -58,11 +58,12 @@
       color: var(--accent);
       letter-spacing: 0.02em;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
     .nav-links a {
       font-size: 14px;
       color: var(--muted);
       transition: color 0.2s;
+      white-space: nowrap;
     }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
 
@@ -189,6 +190,38 @@
       font-family: var(--mono);
     }
 
+    /* EXPERIENCE */
+    .experience-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .experience-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .experience-role { font-size: 1.05rem; font-weight: 600; }
+    .experience-org { color: var(--accent); font-weight: 500; }
+    .experience-meta { font-size: 13px; color: var(--muted); font-family: var(--mono); }
+    .experience-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .experience-list li {
+      font-size: 14px;
+      color: var(--muted);
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .experience-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
     /* PROJECTS */
     .projects-grid { display: flex; flex-direction: column; gap: 1rem; }
     .project-card {
@@ -200,7 +233,18 @@
     }
     .project-card:hover { border-color: rgba(79,142,247,0.35); }
     .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+    .project-name-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .project-name { font-size: 1.05rem; font-weight: 600; }
+    .project-status {
+      font-size: 10px;
+      font-family: var(--mono);
+      color: var(--amber);
+      border: 1px solid rgba(245,166,35,0.35);
+      background: rgba(245,166,35,0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+    }
     .project-links { display: flex; gap: 10px; flex-shrink: 0; }
     .project-link {
       font-size: 12px;
@@ -222,6 +266,35 @@
       color: var(--accent);
       border: 1px solid rgba(79,142,247,0.2);
     }
+
+    /* AWARDS */
+    .awards-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .award-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .award-badge {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(79,142,247,0.2);
+    }
+    .award-text { font-size: 14px; }
+    .award-year { color: var(--muted); font-family: var(--mono); font-size: 12px; }
 
     /* CONTACT */
     .contact-inner {
@@ -258,12 +331,16 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       nav { padding: 0 1rem; }
       .nav-links { gap: 1rem; }
       section { padding: 4rem 1.25rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .hero-name { font-size: 2.25rem; }
+      .experience-header { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
     }
   </style>
 </head>
@@ -275,7 +352,9 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#awards">Awards</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -285,7 +364,7 @@
   <p class="hero-eyebrow">// hello, world</p>
   <h1 class="hero-name">Xinyan Liu</h1>
   <p class="hero-tagline">
-    Computer Science student at University of Melbourne · building things I find interesting and learning as I go.
+    Computing &amp; Software Systems student at the University of Melbourne · building things I find interesting and learning as I go.
   </p>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View my projects</a>
@@ -300,18 +379,18 @@
   <div class="about-grid">
     <div class="about-text">
       <p>
-        I'm a third-year Computer Science student passionate about building software that solves real problems.
+        I'm a third-year Computing and Software Systems student passionate about building software that solves real problems.
         I enjoy full-stack development and have a growing interest in systems programming and machine learning.
       </p>
       <p>
-        Outside of code, I like playing tennis and reading fictions.
+        Outside of code, I like playing tennis and reading fiction.
         I'm always open to new opportunities, collaborations, and interesting conversations.
       </p>
     </div>
     <div class="about-meta">
       <div class="meta-item">
         <div class="meta-label">STUDYING</div>
-        <div class="meta-value">B.Sc. Computer Science</div>
+        <div class="meta-value">B.Sc. Computing &amp; Software Systems</div>
       </div>
       <div class="meta-item">
         <div class="meta-label">UNIVERSITY</div>
@@ -320,6 +399,10 @@
       <div class="meta-item">
         <div class="meta-label">YEAR</div>
         <div class="meta-value">3rd Year (2024–2026)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">WAM</div>
+        <div class="meta-value">84.8 (H1) · Dean's Honours List 2025</div>
       </div>
       <div class="meta-item">
         <div class="meta-label">LOCATION</div>
@@ -345,21 +428,25 @@
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-category">WEB</div>
+      <div class="skill-category">FRAMEWORKS &amp; TOOLS</div>
       <div class="skill-tags">
         <span class="tag">React</span>
-        <span class="tag">HTML/CSS</span>
         <span class="tag">Node.js</span>
-        <span class="tag">REST APIs</span>
+        <span class="tag">Express</span>
+        <span class="tag">Electron</span>
+        <span class="tag">Vite</span>
+        <span class="tag">Git</span>
+        <span class="tag">Gradle</span>
+        <span class="tag">Maven</span>
+        <span class="tag">Docker</span>
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-category">TOOLS</div>
+      <div class="skill-category">DATABASES</div>
       <div class="skill-tags">
-        <span class="tag">Git</span>
-        <span class="tag">Linux</span>
-        <span class="tag">VS Code</span>
-        <span class="tag">Docker</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">PostgreSQL</span>
       </div>
     </div>
     <div class="skill-card">
@@ -368,17 +455,67 @@
         <span class="tag">Data Structures</span>
         <span class="tag">Algorithms</span>
         <span class="tag">OOP</span>
-        <span class="tag">Databases</span>
+        <span class="tag">System Design</span>
+        <span class="tag">Operating Systems</span>
+        <span class="tag">Probability &amp; Statistics</span>
+        <span class="tag">AI</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">SPOKEN LANGUAGES</div>
+      <div class="skill-tags">
+        <span class="tag">English (Professional)</span>
+        <span class="tag">Mandarin (Native)</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">03 // experience</p>
+  <h2>Where I've worked</h2>
+  <div class="experience-item">
+    <div class="experience-header">
+      <div>
+        <span class="experience-role">Administrative Assistant</span>
+        &nbsp;—&nbsp;
+        <span class="experience-org">Damber Financial Service</span>
+      </div>
+      <span class="experience-meta">Melbourne, AU · May 2025 – Aug 2025</span>
+    </div>
+    <ul class="experience-list">
+      <li>Coordinated and scheduled meetings for a team of accountants, managing calendars and ensuring timely communication across stakeholders.</li>
+      <li>Processed and submitted financial forms accurately, maintaining compliance with administrative procedures and documentation standards.</li>
+      <li>Communicated technical and financial concepts to clients in plain language, improving client understanding and satisfaction.</li>
+      <li>Explained database concepts and system logic to non-technical accounting staff, translating documentation into plain language to improve team workflows.</li>
+      <li>Maintained and updated the company database, ensuring data accuracy, consistency, and accessibility across the team.</li>
+    </ul>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
-  <p class="section-label">03 // projects</p>
+  <p class="section-label">04 // projects</p>
   <h2>Things I've built</h2>
   <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-name-row">
+          <span class="project-name">Research Group AI Manager</span>
+          <span class="project-status">IN PROGRESS</span>
+        </div>
+      </div>
+      <p class="project-desc">
+        An intelligent multi-agent AI system that manages research group workflows — paper tracking, task delegation, and team coordination. Agents collaboratively handle state tracking, decision routing, and automated research paper organisation, designed for extensibility across different research group structures.
+      </p>
+      <div class="project-tech">
+        <span class="tech-badge">LangGraph</span>
+        <span class="tech-badge">Pydantic AI</span>
+        <span class="tech-badge">CrewAI</span>
+      </div>
+    </div>
 
     <div class="project-card">
       <div class="project-header">
@@ -389,15 +526,12 @@
         </div>
       </div>
       <p class="project-desc">
-        A desktop app that helps students organise their study schedule using the SM-2 spaced repetition algorithm (the same technique behind Anki).
-        Features include a subject calendar, daily review reminders, daily tasks and progress tracking.
+        A full-stack offline desktop app implementing the SM-2 spaced repetition algorithm (the same technique behind Anki) for intelligent flashcard scheduling. Features a daily review queue with 1–5 self-rating, monthly calendar, 30-day activity chart, subject mastery bars, and full CRUD for subjects and cards. Uses a materialised cache pattern that reduces daily queue queries to a single indexed lookup.
       </p>
       <div class="project-tech">
-        <span class="tech-badge">React</span>
-        <span class="tech-badge">Node.js</span>
-        <span class="tech-badge">SQLite</span>
+        <span class="tech-badge">React (Vite)</span>
         <span class="tech-badge">Express</span>
-        <span class="tech-badge">SQLite</span>
+        <span class="tech-badge">Node 22 SQLite</span>
         <span class="tech-badge">Electron</span>
         <span class="tech-badge">REST API</span>
       </div>
@@ -405,16 +539,51 @@
 
     <div class="project-card">
       <div class="project-header">
-        <span class="project-name">Game Of Throne</span>
+        <span class="project-name">Mafia Recording Website</span>
+        <div class="project-links">
+          <a href="https://github.com/xinyanliu2005/MafiaRecording" class="project-link" target="_blank">GitHub ↗</a>
+          <a href="#" class="project-link">Live ↗</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        A browser-based stat tracker for a social Mafia game group, actively used by 80–100 people. Supports multiple game modes with structured role assignment and automatic score calculation, real-time shared data sync via Supabase, a multilingual UI, and a leaderboard with per-player win-rate breakdowns and full game history.
+      </p>
+      <div class="project-tech">
+        <span class="tech-badge">Supabase</span>
+        <span class="tech-badge">i18n</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-name-row">
+          <span class="project-name">Pathfinding Visualiser</span>
+          <span class="project-status">NOT STARTED</span>
+        </div>
+      </div>
+      <p class="project-desc">
+        Planned: an interactive browser tool that visualises BFS, DFS, and Dijkstra's algorithm on a grid — a learning aid for studying graph algorithms. Draw walls, set start/end points, and watch it solve.
+      </p>
+      <div class="project-tech">
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">HTML Canvas</span>
+        <span class="tech-badge">CSS</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-name">Game of Throne</span>
         <div class="project-links">
           <a href="https://github.com/xinyanliu2005/GameOfThrone" class="project-link" target="_blank">GitHub ↗</a>
         </div>
       </div>
       <p class="project-desc">
-        A 4 player card game that allows pvp or pve
+        A 4-player competitive card game with full PvP and PvE support, featuring AI opponent behaviour with strategic decision logic and complete game rule enforcement. Built with Gradle for dependency management.
       </p>
       <div class="project-tech">
         <span class="tech-badge">Java</span>
+        <span class="tech-badge">Gradle</span>
       </div>
     </div>
 
@@ -427,23 +596,24 @@
         </div>
       </div>
       <p class="project-desc">
-        A puzzle platformer game that allows players to select characters with different skills, defeat enemies and collect coins.
+        A Java-based puzzle platformer featuring multiple playable characters with distinct skill sets, enemy AI with responsive activation and firing behaviour, and multi-level progression. Handles sprite rendering, collision detection, and game state transitions, structured following standard Maven conventions.
       </p>
       <div class="project-tech">
         <span class="tech-badge">Java</span>
+        <span class="tech-badge">Maven</span>
       </div>
     </div>
 
     <div class="project-card">
       <div class="project-header">
-        <span class="project-name">Tetris Vairant</span>
+        <span class="project-name">Tetris Variant</span>
         <div class="project-links">
           <a href="https://github.com/xinyanliu2005/tetris_variant" class="project-link" target="_blank">GitHub ↗</a>
           <a href="#" class="project-link">Live ↗</a>
         </div>
       </div>
       <p class="project-desc">
-        A variant of the Tetris game that introduces new features and new shapes
+        A variant of the classic Tetris game that introduces new features and new piece shapes.
       </p>
       <div class="project-tech">
         <span class="tech-badge">Java</span>
@@ -451,31 +621,40 @@
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-header">
-        <span class="project-name">Pathfinding Visualiser</span>
-        <div class="project-links">
-          <a href="https://github.com/yourusername/pathfinder" class="project-link" target="_blank">GitHub ↗</a>
-          <a href="#" class="project-link">Live ↗</a>
-        </div>
-      </div>
-      <p class="project-desc">
-        An interactive browser tool that visualises BFS, DFS, and Dijkstra's algorithm on a grid.
-        Built as a learning aid while studying graph algorithms. Draw walls, set start/end, and watch it solve.
-      </p>
-      <div class="project-tech">
-        <span class="tech-badge">JavaScript</span>
-        <span class="tech-badge">HTML Canvas</span>
-        <span class="tech-badge">CSS</span>
-      </div>
-    </div>
+  </div>
+</section>
 
+<!-- AWARDS -->
+<section id="awards">
+  <p class="section-label">05 // awards</p>
+  <h2>Recognition</h2>
+  <div class="awards-list">
+    <div class="award-item">
+      <div class="award-badge">1st</div>
+      <div class="award-text">2025 CISSA × MAC Hackathon</div>
+    </div>
+    <div class="award-item">
+      <div class="award-badge">1st</div>
+      <div class="award-text">2024 CISSA Hackathon</div>
+    </div>
+    <div class="award-item">
+      <div class="award-badge">2nd</div>
+      <div class="award-text">2024 CISSA × MAC Hackathon</div>
+    </div>
+    <div class="award-item">
+      <div class="award-badge">★</div>
+      <div class="award-text">Dean's Honours List Level 2 — University of Melbourne <span class="award-year">(2025)</span></div>
+    </div>
+    <div class="award-item">
+      <div class="award-badge">★</div>
+      <div class="award-text">The Stephen Bell Exhibition — Highest Achieving Student in Engineering Mathematics</div>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-label">04 // contact</p>
+  <p class="section-label">06 // contact</p>
   <h2>Let's talk</h2>
   <div class="contact-inner">
     <p>
